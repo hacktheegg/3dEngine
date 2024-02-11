@@ -1,3 +1,0 @@
-/home/hacktheegg/Documents/Code/C++/3dEngine/CMakeFiles/3dEngine.dir
-/home/hacktheegg/Documents/Code/C++/3dEngine/CMakeFiles/edit_cache.dir
-/home/hacktheegg/Documents/Code/C++/3dEngine/CMakeFiles/rebuild_cache.dir
