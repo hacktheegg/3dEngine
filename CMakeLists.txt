@@ -8,7 +8,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/build")
 set(OpenGL_GL_PREFERENCE "GLVND")
 
 find_package(OpenGL REQUIRED)
-find_package(glfw3 3.3 REQUIRED)
+list(APPEND CMAKE_PREFIX_PATH "dependencies/GLFW/lib/cmake")
+find_package(glfw3 3.3.9 REQUIRED)
 
 include_directories(${OPENGL_INCLUDE_DIR} ${GLFW_INCLUDE_DIRS})
 
