@@ -44,7 +44,7 @@ class engine3d {
     }
 
   public:
-    bool onCreate(GLFWwindow* window) {
+    void onCreate(GLFWwindow* window) {
 
       meshCube.tris = {
 
@@ -90,33 +90,17 @@ class engine3d {
       matrixProjection.m[3][2] = (-fFar * fNear) / (fFar - fNear);
       matrixProjection.m[2][3] = 1.0f;
       matrixProjection.m[3][3] = 0.0f;
-
-      return true;
     }
 
 
 
-    int mainLoop() {
-      // Initialize the library
-      if (!glfwInit()) {
-        std::cerr << "Failed to initialize GLFW" << std::endl;
-        return -1;
-      }
-      // Create a windowed mode window and its OpenGL context
-      GLFWwindow* window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-      if (!window) {
-        std::cerr << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return -1;
-      }
+    int mainLoop(GLFWwindow* window) {
 
       double elapsedTime = glfwGetTime();
 
-      // Make the window's context current
-      glfwMakeContextCurrent(window);
-
       int width, height;
       glfwGetWindowSize(window, &width, &height);
+      
       // Loop until the user closes the window
       while (!glfwWindowShouldClose(window)) {
         // Render here
@@ -226,8 +210,27 @@ class engine3d {
 
 
 int main() {
+  // Initialize the library
+  if (!glfwInit()) {
+    std::cerr << "Failed to initialize GLFW" << std::endl;
+    return -1;
+  }
+  // Create a windowed mode window and its OpenGL context
+  GLFWwindow* window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+  if (!window) {
+    std::cerr << "Failed to create GLFW window" << std::endl;
+    glfwTerminate();
+    return -1;
+  }
+
+  
+  // Make the window's context current
+  glfwMakeContextCurrent(window);
+
+
   engine3d engine;
-  int var = engine.mainLoop();
+  engine.onCreate(window);
+  int var = engine.mainLoop(window);
   return var;
 }
 
